@@ -22,7 +22,7 @@ def index(request):
     sftp_client = client.open_sftp()
     sftp_client.chdir(env.str("FTP_DIR"))
     logArray = [x.filename for x in sorted(sftp_client.listdir_attr(), key = lambda f: f.st_mtime)]  
-    shortArray = logArray[-20:]
+    shortArray = logArray[-25:]
     newLog = [*set(shortArray)]
 
     # go through each file and read the lines extracting the data

@@ -5,6 +5,9 @@ from .models import Log
 from datetime import timedelta
 from django.db.models.functions import Now
 from environs import Env
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
 
 env = Env()
 env.read_env()
@@ -63,3 +66,8 @@ def index(request):
     context["dataset"] = Log.objects.all().order_by("-log_date", "-time")
 
     return render(request, 'index.html', context)
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"

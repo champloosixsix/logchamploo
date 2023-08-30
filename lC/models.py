@@ -1,7 +1,5 @@
 from django.db import models
-from django.utils import timezone
-
-
+    
 class Log(models.Model):
     log_date = models.DateField('logdate')
     name = models.CharField(max_length=200)
